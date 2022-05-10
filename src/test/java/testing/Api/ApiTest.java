@@ -168,6 +168,67 @@ public class ApiTest {
 //            }
         }
 
+
+        @Test
+        @Order(3)
+        public void NWB_Put_Users_ById()
+        {
+            System.out.println("----------***** NWB_PUT_Users_ById *****----------");
+
+            String APIBody = "{\"email\": \"ali@gmail.com\",\n" +
+                    "  \"userName\": \"ali\",\n" +
+                    "  \"userId\": \"79ceeaa0-5567-4a91-b859-a2c3f4f85ede\",\n" +
+                    "  \"userRoles\": [\n" +
+                    "    {\n" +
+                    "      \"roleName\": \"SuperAdmin\",\n" +
+                    "      \"selected\": true\n" +
+                    "    }\n" +
+                    "  ]}";
+
+
+            List<Header> headerlist = new ArrayList<Header>();
+            headerlist.add(new Header("Content-Type","application/json"));
+//            headerlist.add(new Header("device-id","1"));
+//            headerlist.add(new Header("user-agents","postman"));
+//            headerlist.add(new Header("device-type","web")); //check this
+//            headerlist.add(new Header("license-key","213DD508-876F-4DD3-BBC1-0A33CC54A6C0")); //check this
+//            headerlist.add(new Header("user-host-name","hakim"));
+//            headerlist.add(new Header("user-language","English"));
+//            headerlist.add(new Header("user-host-address","::::0"));
+            //headerlist.add(new Header("AuthToken","bearer eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOiJBZG1pbiIsIlVzZXJJZCI6IjI2IiwiVXNlclR5cGUiOiJBZG1pbiIsImV4cCI6MTc0OTAzNzk0MCwiaXNzIjoic21lc2suaW4iLCJhdWQiOiJyZWFkZXJzIn0.X7a2_Hf9m5aW8ufa02qJhTlbb-Cg3fX1ljkk5szN6pw "));
+            //headerlist.add(new Header("Authorization","bearer "+token));
+            headerlist.add(new Header(name,value));
+            Headers headers = new Headers(headerlist);
+
+
+
+            Response r = given().body(APIBody).
+                    headers(headers).
+                    when().
+                    put("/api/Auth/Users/79ceeaa0-5567-4a91-b859-a2c3f4f85ede");
+
+            //r.prettyPrint();
+            String body = r.getBody().asString();
+            //ResponseBody  body = r.getBody();
+            System.out.println(body);
+
+            int statusCode = r.getStatusCode();
+            System.out.println(statusCode);
+
+            //Assert that correct status code is returned.
+            //assertEquals(statusCode /*actual value*/, 200 /*expected value*/);
+
+
+//            String bodyAsString = body.asString();
+//            System.out.println(bodyAsString);
+
+//            if(!bodyAsString.contains("Data Fetched Successfully from Database") || !bodyAsString.contains("true"))
+//            {
+//                System.out.println("(API responded wrong)");
+//                fail();
+//            }
+        }
+
     }
 
 }
